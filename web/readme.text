@@ -1,1 +1,13 @@
 创建新项目
+common包中放的是这个项目公用的模块
+main.py 是flask项目的入口函数
+pip install Flask-Migrate==2.7.0 如果flask-migrate中没有MigrateCommand，执行此命令
+
+ModuleNotFoundError: No module named 'flask._compat'
+这个错误修改 修改flask_script中的__init__文件中导包语句
+from flask._compat import text_type 改成 from flask_script._compat import text_type
+
+ImportError: cannot import name '_request_ctx_stack' from 'flask'
+这个错误要修改flask_script 下面的commands.py文件
+将 from flask import _request_ctx_stack 改成 from flask import request_ctx
+在flask的__init__的文件中添加导包 from .globals import _no_app_msg, request_ctx
