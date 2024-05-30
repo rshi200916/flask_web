@@ -3,6 +3,7 @@ from settings import map_config
 from common.models import db
 from shopping.resource.user import user_bp
 from common.utils.logger.flask_logger import create_logger
+from common.utils.token_auth import token_before_request
 
 
 def create_app(config_type):
@@ -20,4 +21,6 @@ def create_app(config_type):
     #redis初始化
     from common.utils.redis_cli import RedisClient
     RedisClient.init_app(app)
+    #全局token请求钩子
+    app.before_request(token_before_request)
     return app

@@ -16,5 +16,14 @@ def regex(pattern):
         else:
             return ValueError('please input right code')
 
-
     return auth
+
+
+def email(email):
+
+    if re.match(r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$', email):
+        return email
+    else:
+        raise ValueError('this is a wrong email')
+
+
