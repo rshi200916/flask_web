@@ -4,6 +4,7 @@ from common.models import db
 from shopping.resource.user import user_bp
 from common.utils.logger.flask_logger import create_logger
 from common.utils.token_auth import token_before_request
+from shopping.resource.category import category_bp
 
 
 def create_app(config_type):
@@ -13,6 +14,8 @@ def create_app(config_type):
     db.init_app(app)
     #用户蓝图的加载
     app.register_blueprint(user_bp, url_prefix='/user')
+    #商品蓝图的加载
+    app.register_blueprint(category_bp, url_prefix='/category')
     #日志
     create_logger(app)
     #限流器
